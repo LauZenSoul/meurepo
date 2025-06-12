@@ -1,0 +1,189 @@
+{
+  "users": [
+    {
+      "_id": "user1",
+      "name": "João Silva",
+      "email": "joao.silva@example.com",
+      "password": "$2b$10$abcdefghijklmnopqrstuv",
+      "role": "student",
+      "createdAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "_id": "user2",
+      "name": "Maria Santos",
+      "email": "maria.santos@example.com",
+      "password": "$2b$10$abcdefghijklmnopqrstuv",
+      "role": "student",
+      "createdAt": "2024-01-02T00:00:00.000Z"
+    },
+    {
+      "_id": "user3",
+      "name": "Pedro Oliveira",
+      "email": "pedro.oliveira@example.com",
+      "password": "$2b$10$abcdefghijklmnopqrstuv",
+      "role": "student",
+      "createdAt": "2024-01-03T00:00:00.000Z"
+    },
+    {
+      "_id": "user4",
+      "name": "Ana Costa",
+      "email": "ana.costa@example.com",
+      "password": "$2b$10$abcdefghijklmnopqrstuv",
+      "role": "student",
+      "createdAt": "2024-01-04T00:00:00.000Z"
+    },
+    {
+      "_id": "user5",
+      "name": "Carlos Ferreira",
+      "email": "carlos.ferreira@example.com",
+      "password": "$2b$10$abcdefghijklmnopqrstuv",
+      "role": "student",
+      "createdAt": "2024-01-05T00:00:00.000Z"
+    }
+  ],
+  "courses": [
+    {
+      "_id": "course1",
+      "title": "Agricultura Sustentável",
+      "description": "Aprenda técnicas modernas de agricultura sustentável",
+      "thumbnail": "agricultura.jpg",
+      "duration": 40,
+      "modules": [
+        {
+          "_id": "module1_1",
+          "title": "Introdução à Agricultura Sustentável",
+          "description": "Conceitos básicos e importância",
+          "content": "Conteúdo do módulo 1",
+          "order": 1
+        },
+        {
+          "_id": "module1_2",
+          "title": "Técnicas de Cultivo",
+          "description": "Métodos e práticas sustentáveis",
+          "content": "Conteúdo do módulo 2",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "_id": "course2",
+      "title": "Pecuária Digital",
+      "description": "Gestão digital de rebanhos e produção animal",
+      "thumbnail": "pecuaria.jpg",
+      "duration": 35,
+      "modules": [
+        {
+          "_id": "module2_1",
+          "title": "Gestão de Rebanho",
+          "description": "Ferramentas digitais para gestão",
+          "content": "Conteúdo do módulo 1",
+          "order": 1
+        },
+        {
+          "_id": "module2_2",
+          "title": "Monitoramento Digital",
+          "description": "Sistemas de monitoramento",
+          "content": "Conteúdo do módulo 2",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "_id": "course3",
+      "title": "Irrigação Inteligente",
+      "description": "Sistemas modernos de irrigação e economia de água",
+      "thumbnail": "irrigacao.jpg",
+      "duration": 30,
+      "modules": [
+        {
+          "_id": "module3_1",
+          "title": "Sistemas de Irrigação",
+          "description": "Tipos e aplicações",
+          "content": "Conteúdo do módulo 1",
+          "order": 1
+        },
+        {
+          "_id": "module3_2",
+          "title": "Automação da Irrigação",
+          "description": "Tecnologias e controle",
+          "content": "Conteúdo do módulo 2",
+          "order": 2
+        }
+      ]
+    }
+  ],
+  "enrollments": [
+    {
+      "_id": "enroll1",
+      "student": "user1",
+      "course": "course1",
+      "enrollmentDate": "2024-01-10T00:00:00.000Z",
+      "status": "active",
+      "progress": 75,
+      "lastAccessDate": "2024-03-01T00:00:00.000Z"
+    },
+    {
+      "_id": "enroll2",
+      "student": "user1",
+      "course": "course2",
+      "enrollmentDate": "2024-01-15T00:00:00.000Z",
+      "status": "active",
+      "progress": 30,
+      "lastAccessDate": "2024-03-02T00:00:00.000Z"
+    },
+    {
+      "_id": "enroll3",
+      "student": "user2",
+      "course": "course1",
+      "enrollmentDate": "2024-01-12T00:00:00.000Z",
+      "status": "completed",
+      "progress": 100,
+      "lastAccessDate": "2024-02-28T00:00:00.000Z"
+    },
+    {
+      "_id": "enroll4",
+      "student": "user2",
+      "course": "course3",
+      "enrollmentDate": "2024-02-01T00:00:00.000Z",
+      "status": "active",
+      "progress": 45,
+      "lastAccessDate": "2024-03-01T00:00:00.000Z"
+    },
+    {
+      "_id": "enroll5",
+      "student": "user3",
+      "course": "course2",
+      "enrollmentDate": "2024-01-20T00:00:00.000Z",
+      "status": "active",
+      "progress": 60,
+      "lastAccessDate": "2024-03-02T00:00:00.000Z"
+    },
+    {
+      "_id": "enroll6",
+      "student": "user3",
+      "course": "course3",
+      "enrollmentDate": "2024-02-05T00:00:00.000Z",
+      "status": "active",
+      "progress": 25,
+      "lastAccessDate": "2024-03-01T00:00:00.000Z"
+    },
+    {
+      "_id": "enroll7",
+      "student": "user4",
+      "course": "course1",
+      "enrollmentDate": "2024-01-25T00:00:00.000Z",
+      "status": "active",
+      "progress": 90,
+      "lastAccessDate": "2024-03-02T00:00:00.000Z"
+    },
+    {
+      "_id": "enroll8",
+      "student": "user5",
+      "course": "course2",
+      "enrollmentDate": "2024-02-10T00:00:00.000Z",
+      "status": "active",
+      "progress": 15,
+      "lastAccessDate": "2024-03-01T00:00:00.000Z"
+    }
+  ]
+} 

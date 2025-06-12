@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre - Instituto Médio Rural Digital de Angola</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .about-section {
+            padding: 4rem 0;
+        }
+        
+        .about-section h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-section h3 {
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+        }
+        
+        .about-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 8px var(--shadow);
+        }
+        
+        .about-card h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .about-card p {
+            margin-bottom: 1rem;
+        }
+        
+        .about-card ul {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+        
+        .about-card li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .team-member {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px var(--shadow);
+            text-align: center;
+        }
+        
+        .team-photo {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .team-info {
+            padding: 1.5rem;
+        }
+        
+        .team-info h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .team-info p.role {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .team-info p.bio {
+            font-size: 0.9rem;
+            color: var(--neutral);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--white);
+            border: 4px solid var(--accent);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+        
+        .timeline-item.left {
+            left: 0;
+        }
+        
+        .timeline-item.right {
+            left: 50%;
+        }
+        
+        .timeline-item.left::after {
+            right: -10px;
+        }
+        
+        .timeline-item.right::after {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            padding: 1.5rem;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px var(--shadow);
+        }
+        
+        .timeline-content h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-content p {
+            margin-bottom: 0;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item.right {
+                left: 0;
+            }
+            
+            .timeline-item.left::after,
+            .timeline-item.right::after {
+                left: 21px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../images/logo.png" alt="IMRDA Logo">
+                <h1>Instituto Médio Rural Digital de Angola</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="cursos.html">Cursos</a></li>
+                    <li><a href="sobre.html" class="active">Sobre</a></li>
+                    <li><a href="documentacao.html">Documentação</a></li>
+                    <li><a href="#" class="btn-login">Entrar</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>Sobre o IMRDA</h2>
+                    <p>Conheça a história, missão e visão do Instituto Médio Rural Digital de Angola, uma iniciativa pioneira para a educação técnica rural.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <div class="container">
+                <div class="about-card">
+                    <h4>Nossa História</h4>
+                    <p>O Instituto Médio Rural Digital de Angola (IMRDA) nasceu da visão da Montijo Sky, Lda de transformar a educação técnica nas áreas rurais de Angola, aproveitando a infraestrutura digital existente para levar conhecimento e capacitação profissional a comunidades tradicionalmente excluídas do acesso à educação de qualidade.</p>
+                    <p>Identificando a oportunidade de utilizar os centros Telbanda já existentes, a Montijo Sky desenvolveu um modelo educacional inovador que combina o ensino digital com práticas presenciais, adaptado às realidades e necessidades das comunidades rurais angolanas.</p>
+                    
+                    <h3>Linha do Tempo</h3>
+                    <div class="timeline">
+                        <div class="timeline-item left">
+                            <div class="timeline-content">
+                                <h4>2024</h4>
+                                <p>Concepção inicial do projeto e estudos de viabilidade</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item right">
+                            <div class="timeline-content">
+                                <h4>2025</h4>
+                                <p>Desenvolvimento do modelo educacional e currículos</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item left">
+                            <div class="timeline-content">
+                                <h4>2025-2026</h4>
+                                <p>Implementação piloto nas províncias do Bengo, Luanda e Malanje</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item right">
+                            <div class="timeline-content">
+                                <h4>2026-2027</h4>
+                                <p>Expansão para outras províncias e diversificação de cursos</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item left">
+                            <div class="timeline-content">
+                                <h4>2028-2030</h4>
+                                <p>Evolução para Universidade Rural Digital de Angola</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-card">
+                    <h4>Missão, Visão e Valores</h4>
+                    
+                    <h3>Missão</h3>
+                    <p>Proporcionar educação técnica de qualidade às comunidades rurais de Angola, através de um modelo híbrido inovador que combina tecnologia digital e práticas presenciais, formando profissionais qualificados e comprometidos com o desenvolvimento sustentável de suas comunidades.</p>
+                    
+                    <h3>Visão</h3>
+                    <p>Ser reconhecido como instituição de referência em educação técnica rural em Angola e na África, evoluindo para uma Universidade Rural Digital que transforma vidas e comunidades através do conhecimento e da inovação.</p>
+                    
+                    <h3>Valores</h3>
+                    <ul>
+                        <li><strong>Inclusão:</strong> Garantir acesso à educação de qualidade para todos, independentemente de sua localização geográfica ou condição socioeconômica.</li>
+                        <li><strong>Inovação:</strong> Buscar constantemente novas abordagens e tecnologias para melhorar o processo de ensino-aprendizagem.</li>
+                        <li><strong>Relevância:</strong> Oferecer formação alinhada às necessidades reais das comunidades rurais e do mercado de trabalho.</li>
+                        <li><strong>Sustentabilidade:</strong> Promover práticas e conhecimentos que respeitem o meio ambiente e contribuam para o desenvolvimento sustentável.</li>
+                        <li><strong>Excelência:</strong> Buscar os mais altos padrões de qualidade em todas as atividades educacionais e administrativas.</li>
+                    </ul>
+                </div>
+                
+                <div class="about-card">
+                    <h4>Modelo Educacional</h4>
+                    <p>O IMRDA adota um modelo educacional híbrido, que combina:</p>
+                    <ul>
+                        <li><strong>Formação teórica digital:</strong> Utilizando a ala digital dos centros Telbanda, os alunos têm acesso a conteúdos educacionais de alta qualidade, mesmo em áreas com conectividade limitada.</li>
+                        <li><strong>Práticas presenciais:</strong> Atividades práticas supervisionadas são realizadas em centros comunitários locais, garantindo a aplicação do conhecimento teórico.</li>
+                        <li><strong>Tutoria especializada:</strong> Tutores com experiência no contexto rural acompanham o desenvolvimento dos alunos, oferecendo suporte personalizado.</li>
+                        <li><strong>Avaliação contínua:</strong> O processo de avaliação é contínuo e diversificado, considerando diferentes aspectos do aprendizado.</li>
+                    </ul>
+                    <p>Este modelo foi desenvolvido especificamente para o contexto rural angolano, considerando as limitações de infraestrutura e as necessidades específicas das comunidades locais.</p>
+                </div>
+                
+                <div class="about-card">
+                    <h4>Parceiros</h4>
+                    <p>O IMRDA conta com parcerias estratégicas que são fundamentais para o sucesso do projeto:</p>
+                    <ul>
+                        <li><strong>Telbanda:</strong> Fornece a infraestrutura digital e de conectividade necessária para o funcionamento do instituto.</li>
+                        <li><strong>Ministério da Educação:</strong> Responsável pela certificação e reconhecimento oficial dos cursos técnicos.</li>
+                        <li><strong>Ministério da Saúde:</strong> Parceiro na certificação dos cursos da área de saúde, como Enfermagem Rural.</li>
+                        <li><strong>Ministério da Agricultura:</strong> Colabora na validação dos currículos e práticas dos cursos de Agronomia e Veterinária.</li>
+                        <li><strong>Comunidades locais:</strong> Participam ativamente no desenvolvimento e implementação dos programas educacionais.</li>
+                    </ul>
+                    <p>Estas parcerias garantem a relevância, qualidade e sustentabilidade do projeto, além de facilitar a inserção dos formandos no mercado de trabalho.</p>
+                </div>
+                
+                <div class="about-card">
+                    <h4>Impacto Social</h4>
+                    <p>O IMRDA tem como objetivo gerar impacto social significativo nas comunidades rurais de Angola:</p>
+                    <ul>
+                        <li><strong>Inclusão digital:</strong> Reduzir a exclusão digital nas áreas rurais, proporcionando acesso à tecnologia e à informação.</li>
+                        <li><strong>Formação profissional:</strong> Capacitar jovens e adultos com conhecimentos técnicos relevantes para o mercado de trabalho local.</li>
+                        <li><strong>Desenvolvimento econômico:</strong> Fomentar o empreendedorismo e a inovação nas comunidades rurais, contribuindo para o desenvolvimento econômico local.</li>
+                        <li><strong>Fixação de talentos:</strong> Reduzir o êxodo rural ao oferecer oportunidades de formação e trabalho nas próprias comunidades.</li>
+                        <li><strong>Melhoria dos serviços:</strong> Contribuir para a melhoria dos serviços de saúde, agricultura e gestão nas áreas rurais através da formação de profissionais qualificados.</li>
+                    </ul>
+                    <p>O instituto monitora continuamente seu impacto social através de indicadores específicos, garantindo que suas ações estejam efetivamente contribuindo para a transformação das comunidades atendidas.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../images/logo.png" alt="IMRDA Logo">
+                    <p>Instituto Médio Rural Digital de Angola</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="cursos.html">Cursos</a></li>
+                        <li><a href="sobre.html">Sobre Nós</a></li>
+                        <li><a href="documentacao.html">Documentação</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contacto</h4>
+                    <p>Email: info@imrda.ao</p>
+                    <p>Telefone: +244 XXX XXX XXX</p>
+                </div>
+                <div class="footer-partners">
+                    <h4>Parceiros</h4>
+                    <div class="partner-logos">
+                        <img src="../images/logo.png" alt="Telbanda">
+                        <img src="../images/logo.png" alt="Ministério da Educação">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Instituto Médio Rural Digital de Angola. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

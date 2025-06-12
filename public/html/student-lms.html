@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ITDRA - Área do Aluno</title>
+    
+    <!-- Fontes -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/student-lms.css">
+</head>
+<body>
+    <!-- Menu Toggle -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Alternar Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Overlay para mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+    <!-- Container principal -->
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="../images/logo.png" alt="ITDRA Logo" height="40">
+                    <h3>ITDRA</h3>
+                </div>
+                <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle Sidebar">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav" role="navigation">
+                <ul>
+                    <li class="nav-item active">
+                        <a href="#dashboard" class="nav-link" data-section="dashboard" aria-current="page">
+                            <i class="fas fa-th-large" aria-hidden="true"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#modulos" class="nav-link" data-section="modulos">
+                            <i class="fas fa-book-open" aria-hidden="true"></i>
+                            <span>Módulos</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#aulas-presenciais" class="nav-link" data-section="aulas-presenciais">
+                            <i class="fas fa-chalkboard" aria-hidden="true"></i>
+                            <span>Aulas Presenciais</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#calendario" class="nav-link" data-section="calendario">
+                            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                            <span>Calendário</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#notas" class="nav-link" data-section="notas">
+                            <i class="fas fa-clipboard-list" aria-hidden="true"></i>
+                            <span>Notas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#materiais" class="nav-link" data-section="materiais">
+                            <i class="fas fa-file-download" aria-hidden="true"></i>
+                            <span>Materiais</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#suporte" class="nav-link" data-section="suporte">
+                            <i class="fas fa-headset" aria-hidden="true"></i>
+                            <span>Suporte</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="../images/avatar.png" alt="Foto do Perfil">
+                    <div class="user-info">
+                        <span class="user-name">João Silva</span>
+                        <span class="user-role">Aluno</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Conteúdo principal -->
+        <main class="main-content" role="main">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="search-bar">
+                    <label for="search" class="sr-only">Pesquisar</label>
+                    <input type="search" id="search" placeholder="Pesquisar..." aria-label="Campo de pesquisa">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                </div>
+                <div class="header-right">
+                    <button class="notifications" aria-label="Notificações">
+                        <i class="fas fa-bell" aria-hidden="true"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Seção Dashboard -->
+            <section id="dashboard-section" class="content-section active">
+                <!-- Widgets Informativos -->
+                <section class="info-widgets">
+                    <div class="info-widget">
+                        <div class="widget-header">
+                            <h3 class="widget-title">Progresso do Curso</h3>
+                            <div class="widget-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                        </div>
+                        <div class="widget-content">
+                            <div class="progress-circle">
+                                <span class="progress-value">75%</span>
+                            </div>
+                            <div class="progress-label">
+                                <span>Técnico em Veterinária Rural</span>
+                                <span>2º Semestre</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-widget">
+                        <div class="widget-header">
+                            <h3 class="widget-title">Próximas Atividades</h3>
+                            <div class="widget-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                        </div>
+                        <div class="widget-content">
+                            <ul class="activities-list">
+                                <li>
+                                    <span class="activity-type presencial">Presencial</span>
+                                    <span class="activity-date">Hoje, 14:00</span>
+                                    <span class="activity-title">Aula Prática: Anatomia Animal</span>
+                                    <span class="activity-location">Centro ITDRA - Lab 02</span>
+                                </li>
+                                <li>
+                                    <span class="activity-type online">Online</span>
+                                    <span class="activity-date">Amanhã, 10:00</span>
+                                    <span class="activity-title">Avaliação: Fisiologia Veterinária</span>
+                                    <span class="activity-location">Plataforma Digital</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="info-widget">
+                        <div class="widget-header">
+                            <h3 class="widget-title">Desempenho</h3>
+                            <div class="widget-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                        </div>
+                        <div class="widget-content">
+                            <div class="grade-display">
+                                <span class="grade">8.5</span>
+                                <span class="grade-label">Média Geral</span>
+                            </div>
+                            <div class="attendance-display">
+                                <span class="attendance">90%</span>
+                                <span class="attendance-label">Frequência</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Módulos do Curso -->
+                <section class="course-content">
+                    <div class="section-header">
+                        <h2>Técnico em Veterinária Rural</h2>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 4 Semestres</span>
+                            <span><i class="fas fa-users"></i> Turma VET-2024-1</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Centro ITDRA - Montijo</span>
+                        </div>
+                    </div>
+
+                    <div class="course-navigation">
+                        <div class="nav-tabs">
+                            <div class="nav-tab active">Módulos</div>
+                            <div class="nav-tab">Materiais</div>
+                            <div class="nav-tab">Discussões</div>
+                            <div class="nav-tab">Notas</div>
+                        </div>
+
+                        <div class="modules-list">
+                            <div class="semester-group">
+                                <h3>2º Semestre em Andamento</h3>
+                                
+                                <div class="module-item">
+                                    <div class="module-status status-complete">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="module-info">
+                                        <h4>Anatomia Animal</h4>
+                                        <div class="module-details">
+                                            <span><i class="fas fa-laptop"></i> 4 aulas online</span>
+                                            <span><i class="fas fa-chalkboard"></i> 2 aulas práticas</span>
+                                            <span><i class="fas fa-tasks"></i> 2 avaliações</span>
+                                        </div>
+                                    </div>
+                                    <div class="module-progress">
+                                        <span class="progress-text">100%</span>
+                                        <span class="grade-text">9.0</span>
+                                    </div>
+                                </div>
+
+                                <div class="module-item current">
+                                    <div class="module-status status-in-progress">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div class="module-info">
+                                        <h4>Fisiologia Veterinária</h4>
+                                        <div class="module-details">
+                                            <span><i class="fas fa-laptop"></i> 6 aulas online</span>
+                                            <span><i class="fas fa-chalkboard"></i> 3 aulas práticas</span>
+                                            <span><i class="fas fa-tasks"></i> 3 avaliações</span>
+                                        </div>
+                                        <div class="next-class">
+                                            <span class="label">Próxima Aula:</span>
+                                            <span class="info">Sistema Circulatório - 15/03 às 14:00</span>
+                                        </div>
+                                    </div>
+                                    <div class="module-progress">
+                                        <span class="progress-text">60%</span>
+                                        <span class="grade-text">8.5</span>
+                                    </div>
+                                </div>
+
+                                <div class="module-item">
+                                    <div class="module-status status-locked">
+                                        <i class="fas fa-lock"></i>
+                                    </div>
+                                    <div class="module-info">
+                                        <h4>Biossegurança Animal</h4>
+                                        <div class="module-details">
+                                            <span><i class="fas fa-laptop"></i> 5 aulas online</span>
+                                            <span><i class="fas fa-chalkboard"></i> 3 aulas práticas</span>
+                                            <span><i class="fas fa-tasks"></i> 2 avaliações</span>
+                                        </div>
+                                    </div>
+                                    <div class="module-progress">
+                                        <span class="progress-text">0%</span>
+                                        <span class="unlock-date">Disponível em 20/03</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="semester-summary">
+                                <div class="summary-item">
+                                    <span class="label">Progresso do Semestre</span>
+                                    <span class="value">53%</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="label">Média Atual</span>
+                                    <span class="value">8.7</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="label">Frequência</span>
+                                    <span class="value">90%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/student-lms.js"></script>
+</body>
+</html> 

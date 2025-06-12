@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard do Professor - ITDRural</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .stat-card {
+            border-left: 4px solid #007bff;
+            transition: transform 0.2s;
+        }
+        .stat-card:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container">
+            <a class="navbar-brand" href="#">ITDRural - Professor</a>
+            <div class="navbar-nav ms-auto">
+                <span class="navbar-text me-3" id="professorName">Professor</span>
+                <a href="login.html" class="btn btn-outline-light btn-sm">Sair</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid py-4">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Menu Professor</h5>
+                    </div>
+                    <div class="list-group list-group-flush">
+                        <a href="#dashboard" class="list-group-item list-group-item-action active" onclick="showSection('dashboard')">Dashboard</a>
+                        <a href="#turmas" class="list-group-item list-group-item-action" onclick="showSection('turmas')">Minhas Turmas</a>
+                        <a href="#disciplinas" class="list-group-item list-group-item-action" onclick="showSection('disciplinas')">Disciplinas</a>
+                        <a href="#notas" class="list-group-item list-group-item-action" onclick="showSection('notas')">Lançar Notas</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <!-- Dashboard Section -->
+                <div id="dashboard-section" class="content-section">
+                    <h2>Dashboard do Professor</h2>
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <div class="card stat-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Turmas</h5>
+                                    <h2 class="text-primary" id="totalTurmas">0</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card stat-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Alunos</h5>
+                                    <h2 class="text-success" id="totalAlunos">0</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card stat-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Disciplinas</h5>
+                                    <h2 class="text-info" id="totalDisciplinas">0</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Turmas Section -->
+                <div id="turmas-section" class="content-section" style="display: none;">
+                    <h2>Minhas Turmas</h2>
+                    <div id="turmasContainer"></div>
+                </div>
+
+                <!-- Disciplinas Section -->
+                <div id="disciplinas-section" class="content-section" style="display: none;">
+                    <h2>Minhas Disciplinas</h2>
+                    <div id="disciplinasContainer"></div>
+                </div>
+
+                <!-- Notas Section -->
+                <div id="notas-section" class="content-section" style="display: none;">
+                    <h2>Lançar Notas</h2>
+                    <div class="card">
+                        <div class="card-body">
+                            <form id="notaForm">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Aluno</label>
+                                        <select class="form-select" id="studentSelect" required>
+                                            <option value="">Selecione um aluno</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Disciplina</label>
+                                        <select class="form-select" id="courseSelect" required>
+                                            <option value="">Selecione uma disciplina</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Nota (0-10)</label>
+                                        <input type="number" class="form-control" id="notaInput" min="0" max="10" step="0.1" required>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <button type="submit" class="btn btn-primary">Lançar Nota</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let professorData = null;
+
+        function showSection(sectionName) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionName + '-section').style.display = 'block';
+            
+            document.querySelectorAll('.list-group-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        async function loadProfessorData() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const professorId = urlParams.get('professorId') || localStorage.getItem('userId');
+            
+            if (!professorId) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/professors/${professorId}/dashboard`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    professorData = data;
+                    displayProfessorData(data);
+                } else {
+                    alert('Erro ao carregar dados do professor');
+                    window.location.href = 'login.html';
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Erro de conexão');
+            }
+        }
+
+        function displayProfessorData(data) {
+            document.getElementById('professorName').textContent = data.professor.name;
+            document.getElementById('totalTurmas').textContent = data.turmas.length;
+            document.getElementById('totalAlunos').textContent = data.students.length;
+            document.getElementById('totalDisciplinas').textContent = data.professor.disciplinas.length;
+
+            // Preencher turmas
+            const turmasContainer = document.getElementById('turmasContainer');
+            turmasContainer.innerHTML = data.turmas.map(turma => `
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h5>${turma.nome} - ${turma.ano}/${turma.semestre}</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>Alunos: ${turma.alunos.length}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            // Preencher disciplinas
+            const disciplinasContainer = document.getElementById('disciplinasContainer');
+            disciplinasContainer.innerHTML = data.courses.map(course => `
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h5>${course.title}</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>${course.description}</p>
+                        <p><strong>Duração:</strong> ${course.duration} horas</p>
+                    </div>
+                </div>
+            `).join('');
+
+            // Preencher selects para lançamento de notas
+            const studentSelect = document.getElementById('studentSelect');
+            studentSelect.innerHTML = '<option value="">Selecione um aluno</option>' +
+                data.students.map(student => `<option value="${student.id}">${student.name}</option>`).join('');
+
+            const courseSelect = document.getElementById('courseSelect');
+            courseSelect.innerHTML = '<option value="">Selecione uma disciplina</option>' +
+                data.courses.map(course => `<option value="${course.id}">${course.title}</option>`).join('');
+        }
+
+        document.getElementById('notaForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const studentId = document.getElementById('studentSelect').value;
+            const courseId = document.getElementById('courseSelect').value;
+            const nota = parseFloat(document.getElementById('notaInput').value);
+            
+            try {
+                const response = await fetch('/api/coordinator/grades', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        studentId: parseInt(studentId),
+                        courseId: parseInt(courseId),
+                        nota: nota,
+                        professor: professorData.professor.name
+                    })
+                });
+
+                if (response.ok) {
+                    alert('Nota lançada com sucesso!');
+                    document.getElementById('notaForm').reset();
+                } else {
+                    alert('Erro ao lançar nota');
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Erro de conexão');
+            }
+        });
+
+        // Carregar dados quando a página carregar
+        window.addEventListener('load', loadProfessorData);
+    </script>
+</body>
+</html> 

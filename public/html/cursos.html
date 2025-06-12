@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos - Instituto Técnico Digital Rural de Angola</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/courses-modern.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../images/logo_temp.png" alt="ITDRA Logo">
+                <h1>Instituto Técnico Digital Rural de Angola</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="cursos.html" class="active">Cursos</a></li>
+                    <li><a href="#">Sobre</a></li>
+                    <li><a href="#">Contacto</a></li>
+                    <li><a href="#" class="btn-login">Entrar</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle" aria-label="Menu de navegação">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="course-hero">
+            <div class="container">
+                <h1>Nossos Cursos Técnicos</h1>
+                <p>Explore nossa oferta de cursos técnicos especializados, desenvolvidos para capacitar profissionais no contexto rural angolano.</p>
+            </div>
+        </section>
+
+        <section class="course-categories">
+            <div class="container">
+                <div class="category-filters" role="tablist">
+                    <button class="category-filter active" role="tab" aria-selected="true" data-category="todos">
+                        <i class="fas fa-th-large"></i> Todos os Cursos
+                    </button>
+                    <button class="category-filter" role="tab" aria-selected="false" data-category="saude">
+                        <i class="fas fa-heartbeat"></i> Saúde
+                    </button>
+                    <button class="category-filter" role="tab" aria-selected="false" data-category="agricultura">
+                        <i class="fas fa-leaf"></i> Agricultura
+                    </button>
+                    <button class="category-filter" role="tab" aria-selected="false" data-category="gestao">
+                        <i class="fas fa-chart-line"></i> Gestão
+                    </button>
+                    <button class="category-filter" role="tab" aria-selected="false" data-category="veterinaria">
+                        <i class="fas fa-paw"></i> Veterinária
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="courses-section">
+            <div class="container">
+                <div class="courses-grid">
+                    <!-- Card Enfermagem Rural -->
+                    <article class="course-card" data-category="saude">
+                        <div class="course-card__image">
+                            <img src="../images/enfermagem-rural.jpg" alt="Estudantes de enfermagem em prática">
+                        </div>
+                        <div class="course-card__content">
+                            <span class="course-card__category">Saúde Rural</span>
+                            <h2 class="course-card__title">Técnico em Enfermagem Rural</h2>
+                            <p class="course-card__description">
+                                Formação abrangente em saúde rural e atendimento comunitário, com foco em práticas adaptadas ao contexto rural angolano.
+                            </p>
+                            <div class="course-info">
+                                <div class="info-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>2 anos</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <span>Técnico Médio</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-laptop-house"></i>
+                                    <span>Ensino Híbrido</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-language"></i>
+                                    <span>Português</span>
+                                </div>
+                            </div>
+                            <div class="course-actions">
+                                <button class="btn btn-primary" onclick="openCourseDetails('enfermagem')">
+                                    <i class="fas fa-info-circle"></i> Ver Detalhes
+                                </button>
+                                <a href="#" class="btn btn-outline">
+                                    <i class="fas fa-user-plus"></i> Inscrever-se
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Card Agronomia Rural -->
+                    <article class="course-card" data-category="agricultura">
+                        <div class="course-card__image">
+                            <img src="../images/agronomia-rural.jpg" alt="Campo de cultivo com tecnologias modernas">
+                        </div>
+                        <div class="course-card__content">
+                            <span class="course-card__category">Agricultura</span>
+                            <h2 class="course-card__title">Técnico em Agronomia Rural</h2>
+                            <p class="course-card__description">
+                                Formação especializada em práticas agrícolas sustentáveis, gestão de cultivos e tecnologias agrícolas modernas.
+                            </p>
+                            <div class="course-info">
+                                <div class="info-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>2 anos</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <span>Técnico Médio</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-laptop-house"></i>
+                                    <span>Ensino Híbrido</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-language"></i>
+                                    <span>Português</span>
+                                </div>
+                            </div>
+                            <div class="course-actions">
+                                <button class="btn btn-primary" onclick="openCourseDetails('agronomia')">
+                                    <i class="fas fa-info-circle"></i> Ver Detalhes
+                                </button>
+                                <a href="#" class="btn btn-outline">
+                                    <i class="fas fa-user-plus"></i> Inscrever-se
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Card Administração Rural -->
+                    <article class="course-card" data-category="gestao">
+                        <div class="course-card__image">
+                            <img src="../images/administracao-rural.jpg" alt="Gestão de empreendimento rural">
+                    </div>
+                        <div class="course-card__content">
+                            <span class="course-card__category">Gestão Rural</span>
+                            <h2 class="course-card__title">Técnico em Administração Rural</h2>
+                            <p class="course-card__description">
+                                Formação em gestão de empreendimentos rurais, com foco em finanças, planejamento e empreendedorismo.
+                            </p>
+                            <div class="course-info">
+                                <div class="info-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>2 anos</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <span>Técnico Médio</span>
+                                    </div>
+                                <div class="info-item">
+                                    <i class="fas fa-laptop-house"></i>
+                                    <span>Ensino Híbrido</span>
+                                        </div>
+                                <div class="info-item">
+                                    <i class="fas fa-language"></i>
+                                    <span>Português</span>
+                                        </div>
+                                        </div>
+                            <div class="course-actions">
+                                <button class="btn btn-primary" onclick="openCourseDetails('administracao')">
+                                    <i class="fas fa-info-circle"></i> Ver Detalhes
+                                </button>
+                                <a href="#" class="btn btn-outline">
+                                    <i class="fas fa-user-plus"></i> Inscrever-se
+                                </a>
+                                        </div>
+                                        </div>
+                    </article>
+
+                    <!-- Card Veterinária Rural -->
+                    <article class="course-card" data-category="veterinaria">
+                        <div class="course-card__image">
+                            <img src="../images/veterinaria-rural.jpg" alt="Atendimento veterinário rural">
+                                        </div>
+                        <div class="course-card__content">
+                            <span class="course-card__category">Veterinária</span>
+                            <h2 class="course-card__title">Técnico em Veterinária Rural</h2>
+                            <p class="course-card__description">
+                                Formação em saúde e produção animal, com foco em atendimento veterinário no contexto rural.
+                            </p>
+                            <div class="course-info">
+                                <div class="info-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>2 anos</span>
+                                            </div>
+                                <div class="info-item">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <span>Técnico Médio</span>
+                                            </div>
+                                <div class="info-item">
+                                    <i class="fas fa-laptop-house"></i>
+                                    <span>Ensino Híbrido</span>
+                                        </div>
+                                <div class="info-item">
+                                    <i class="fas fa-language"></i>
+                                    <span>Português</span>
+                                </div>
+                            </div>
+                            <div class="course-actions">
+                                <button class="btn btn-primary" onclick="openCourseDetails('veterinaria')">
+                                    <i class="fas fa-info-circle"></i> Ver Detalhes
+                                </button>
+                                <a href="#" class="btn btn-outline">
+                                    <i class="fas fa-user-plus"></i> Inscrever-se
+                                </a>
+                    </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Cursos Futuros -->
+        <section class="future-courses-section">
+            <div class="container">
+                <h2>Cursos em Desenvolvimento</h2>
+                <p class="section-intro">Estamos sempre expandindo nossa oferta educacional. Conheça os próximos cursos que estamos desenvolvendo e demonstre seu interesse.</p>
+                
+                <div class="courses-grid">
+                    <!-- Curso Futuro: Energia Rural Sustentável -->
+                    <article class="course-card future" data-category="energia">
+                        <div class="course-card__image">
+                            <img src="../images/energia-rural.jpg" alt="Sistemas de energia renovável rural">
+                        </div>
+                        <div class="course-card__content">
+                            <span class="course-card__category">Energia</span>
+                            <h2 class="course-card__title">Técnico em Energia Rural Sustentável</h2>
+                            <p class="course-card__description">
+                                Formação em implementação e manutenção de sistemas de energia renovável para comunidades rurais.
+                            </p>
+                            <div class="interest-buttons">
+                                <button class="btn btn-outline" onclick="demonstrarInteresse('energia')">
+                                    <i class="fas fa-star"></i> Demonstrar Interesse
+                                </button>
+                                <span class="interest-count">42 interessados</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Curso Futuro: Tecnologia Rural -->
+                    <article class="course-card future" data-category="tecnologia">
+                        <div class="course-card__image">
+                            <img src="../images/tecnologia-rural.jpg" alt="Tecnologia aplicada no campo">
+                        </div>
+                        <div class="course-card__content">
+                            <span class="course-card__category">Tecnologia</span>
+                            <h2 class="course-card__title">Técnico em Tecnologia Rural</h2>
+                            <p class="course-card__description">
+                                Formação em implementação e manutenção de sistemas tecnológicos adaptados ao contexto rural.
+                            </p>
+                            <div class="interest-buttons">
+                                <button class="btn btn-outline" onclick="demonstrarInteresse('tecnologia')">
+                                    <i class="fas fa-star"></i> Demonstrar Interesse
+                                </button>
+                                <span class="interest-count">38 interessados</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Sugerir Curso -->
+        <section class="suggest-course-section">
+            <div class="container">
+                <div class="suggest-course">
+                    <h3><i class="fas fa-lightbulb"></i> Sugira um Curso</h3>
+                    <p>Tem uma ideia para um novo curso técnico rural? Compartilhe conosco! Sua sugestão é valiosa para expandirmos nossa oferta educacional.</p>
+                    
+                    <form class="suggest-form" id="suggestCourseForm" onsubmit="return submitSuggestion(event)">
+                        <div class="form-group">
+                            <label for="courseName">Nome do Curso Sugerido</label>
+                            <input type="text" id="courseName" name="courseName" required placeholder="Ex: Técnico em Agroecologia">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="courseDescription">Por que este curso seria importante?</label>
+                            <textarea id="courseDescription" name="courseDescription" required placeholder="Descreva brevemente a importância deste curso para o desenvolvimento rural..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="courseArea">Área Principal</label>
+                            <select id="courseArea" name="courseArea" required>
+                                <option value="">Selecione uma área</option>
+                                <option value="agricultura">Agricultura</option>
+                                <option value="pecuaria">Pecuária</option>
+                                <option value="tecnologia">Tecnologia</option>
+                                <option value="gestao">Gestão</option>
+                                <option value="saude">Saúde</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactEmail">Seu Email (opcional)</label>
+                            <input type="email" id="contactEmail" name="contactEmail" placeholder="Para mantermos você informado sobre sua sugestão">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Enviar Sugestão
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modais de Detalhes dos Cursos -->
+        <div id="courseModal" class="course-modal" role="dialog" aria-hidden="true">
+            <div class="modal-content">
+                <button class="modal-close" aria-label="Fechar detalhes do curso">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div id="modalContent"></div>
+            </div>
+        </div>
+
+        <!-- Botão Voltar ao Topo -->
+        <button class="back-to-top" aria-label="Voltar ao topo da página">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../images/logo_temp.png" alt="ITDRA Logo">
+                    <p>Instituto Técnico Digital Rural de Angola</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="cursos.html">Cursos</a></li>
+                        <li><a href="#">Sobre</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contacto</h4>
+                    <p><i class="fas fa-envelope"></i> Email: info@itdra.ao</p>
+                    <p><i class="fas fa-phone"></i> Telefone: +244 XXX XXX XXX</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Instituto Técnico Digital Rural de Angola. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/courses.js"></script>
+</body>
+</html>

@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITDRA - Área do Aluno</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Fontes -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/dashboard-aluno.js" defer></script>
+    <style>
+        :root {
+            --primary: #2E7D32; /* Verde Terra */
+            --secondary: #1565C0; /* Azul Digital */
+            --accent: #E65100; /* Ocre Angolano */
+            --accent-light: #FFB300; /* Amarelo Sol */
+            --neutral: #616161; /* Cinza Neutro */
+            --light: #F5F5F5;
+            --dark: #212121;
+            --white: #FFFFFF;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --success: #388E3C;
+            --error: #D32F2F;
+            --warning: #FFA000;
+            --info: #1976D2;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            font-family: 'Lato', sans-serif;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
+            box-shadow: 0 4px 12px var(--shadow);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--white) !important;
+        }
+
+        .nav-link {
+            color: var(--white) !important;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            margin: 0 0.2rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            opacity: 0.9;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+            opacity: 1;
+        }
+
+        .nav-link:active {
+            background-color: var(--secondary);
+            color: var(--white) !important;
+            box-shadow: 0 2px 8px var(--shadow) inset;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px var(--shadow);
+            transition: all 0.3s ease;
+            background: var(--white);
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .welcome-card {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 2rem;
+        }
+
+        .welcome-card h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .metric-card {
+            text-align: center;
+            padding: 1.5rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .metric-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover .icon {
+            transform: scale(1.1);
+            color: var(--secondary);
+        }
+
+        .metric-card .value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .metric-card .label {
+            color: var(--neutral);
+            font-size: 1.1rem;
+        }
+
+        .progress {
+            height: 12px;
+            border-radius: 6px;
+            background-color: var(--light);
+        }
+
+        .progress-bar {
+            transition: width 1s ease-in-out;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        .grade-badge {
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 500;
+        }
+
+        .grade-badge.approved {
+            background-color: var(--success);
+            color: var(--white);
+        }
+
+        .grade-badge.pending {
+            background-color: var(--warning);
+            color: var(--dark);
+        }
+
+        .grade-badge.needs-recurso {
+            background-color: var(--error);
+            color: var(--white);
+        }
+
+        .year-selector {
+            padding: 0.5rem;
+            border-radius: 8px;
+            border: 2px solid var(--primary);
+            background-color: var(--white);
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .year-selector:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        .module-card {
+            border-left: 4px solid var(--primary);
+            margin-bottom: 1rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .module-card:hover {
+            background-color: var(--light);
+            transform: translateX(5px);
+        }
+
+        .module-card .module-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .module-resources {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .resource-link {
+            color: var(--secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .resource-link:hover {
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .complete-module-btn {
+            background-color: var(--success);
+            color: var(--white);
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            float: right;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .complete-module-btn:hover:not(:disabled) {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .complete-module-btn:disabled {
+            background-color: var(--neutral);
+            cursor: not-allowed;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        /* Adicionando estilos para a tabela */
+        .table {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .table thead th {
+            background-color: var(--light);
+            color: var(--dark);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .table tbody tr:hover {
+            background-color: var(--light);
+        }
+
+        /* Card headers estilizados */
+        .card-header {
+            background-color: var(--white);
+            border-bottom: 2px solid var(--light);
+            padding: 1.5rem;
+        }
+
+        .card-header h5 {
+            color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-header h5 i {
+            color: var(--secondary);
+        }
+
+        .text-success {
+          color: #2E7D32 !important;
+        }
+        .bg-white {
+          background-color: #ffffff !important;
+        }
+        .shadow-sm {
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+        }
+        .fw-bold {
+          font-weight: 600 !important;
+        }
+        .fs-3 {
+          font-size: 1.75rem;
+        }
+
+        .card-body .shadow-sm:hover {
+          transform: scale(1.02);
+          transition: all 0.3s ease;
+        }
+
+        .btn-outline-primary:hover {
+          background-color: #1565C0;
+          color: white;
+          transition: all 0.3s ease;
+        }
+
+        .list-group-item i {
+          width: 24px;
+        }
+        .btn-outline-success:hover {
+          background-color: #2E7D32;
+          color: white;
+          transition: all 0.3s ease;
+        }
+
+        .module-resources {
+            margin-top: 1rem;
+        }
+
+        .video-aulas-section {
+            padding: 2rem;
+            background-color: var(--white);
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .video-card {
+            border: 1px solid var(--light);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .video-title {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .video-description {
+            color: var(--neutral);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .video-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--neutral);
+            font-size: 0.8rem;
+        }
+
+        .video-progress {
+            height: 4px;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegação -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-leaf me-2"></i>ITDRA
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="notas.html">
+                            <i class="fas fa-chart-line me-1"></i>Notas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="progresso.html">
+                            <i class="fas fa-tasks me-1"></i>Progresso
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="materiais.html">
+                            <i class="fas fa-book me-1"></i>Materiais
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">
+                            <i class="fas fa-sign-out-alt me-1"></i>Sair
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Conteúdo principal -->
+    <div class="container py-4">
+        <!-- Seção de boas-vindas -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card welcome-card animate-fade-in">
+                    <div class="card-body">
+                        <h5 class="card-title">Bem-vindo(a), Maria Santos!</h5>
+                        <p class="card-text">
+                            Curso atual: Técnico em Agricultura Sustentável - 1º Ano
+                            <br>
+                            <small>Lembre-se: você pode estar inscrito em apenas um curso por vez.</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resumo Académico -->
+        <div class="row mb-4">
+          <div class="col-md-2 col-sm-6 mb-3">
+            <div class="text-center bg-white rounded shadow-sm p-3 h-100">
+              <div class="text-success fs-3"><i class="fas fa-book-open"></i></div>
+              <div class="fw-bold">Agricultura</div>
+              <small class="text-muted">Curso Atual</small>
+            </div>
+          </div>
+          <div class="col-md-2 col-sm-6 mb-3">
+            <div class="text-center bg-white rounded shadow-sm p-3 h-100">
+              <div class="text-success fs-3"><i class="fas fa-layer-group"></i></div>
+              <div class="fw-bold">1º Ano</div>
+              <small class="text-muted">Ano / Classe</small>
+            </div>
+          </div>
+          <div class="col-md-2 col-sm-6 mb-3">
+            <div class="text-center bg-white rounded shadow-sm p-3 h-100">
+              <div class="text-success fs-3"><i class="fas fa-toggle-on"></i></div>
+              <div class="fw-bold">Ativo</div>
+              <small class="text-muted">Inscrição</small>
+            </div>
+          </div>
+          <div class="col-md-2 col-sm-6 mb-3">
+            <div class="text-center bg-white rounded shadow-sm p-3 h-100">
+              <div class="text-success fs-3"><i class="fas fa-star"></i></div>
+              <div class="fw-bold">13.2</div>
+              <small class="text-muted">Média Geral</small>
+            </div>
+          </div>
+          <div class="col-md-2 col-sm-6 mb-3">
+            <div class="text-center bg-white rounded shadow-sm p-3 h-100">
+              <div class="text-success fs-3"><i class="fas fa-chart-line"></i></div>
+              <div class="fw-bold">71%</div>
+              <small class="text-muted">Progresso</small>
+            </div>
+          </div>
+          <div class="col-md-2 col-sm-6 mb-3">
+            <div class="text-center bg-white rounded shadow-sm p-3 h-100">
+              <div class="text-success fs-3"><i class="fas fa-clock"></i></div>
+              <div class="fw-bold">10 Jun</div>
+              <small class="text-muted">Último Acesso</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Seção de Notas -->
+        <div class="card animate-fade-in">
+            <div class="card-header bg-white py-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">
+                        <i class="fas fa-graduation-cap me-2"></i>
+                        Notas e Avaliações
+                    </h5>
+                    <div class="d-flex align-items-center gap-2">
+                        <select class="form-select form-select-sm" id="filtroDisciplina" style="width: auto;">
+                            <option value="">Todas as Disciplinas</option>
+                            <option value="Fundamentos de Agricultura">Fundamentos de Agricultura</option>
+                            <option value="Gestão de Recursos Naturais">Gestão de Recursos Naturais</option>
+                            <option value="Técnicas de Irrigação">Técnicas de Irrigação</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table" id="tabelaNotas">
+                        <thead>
+                            <tr>
+                                <th>Disciplina</th>
+                                <th>Próxima Avaliação</th>
+                                <th>P1</th>
+                                <th>P2</th>
+                                <th>Exame</th>
+                                <th>Status</th>
+                                <th>Observações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-disciplina="Fundamentos de Agricultura">
+                                <td>Fundamentos de Agricultura</td>
+                                <td>—</td>
+                                <td>15</td>
+                                <td>14</td>
+                                <td>16</td>
+                                <td><span class="grade-badge approved">Aprovado</span></td>
+                                <td><span class="text-success">Nenhuma pendência</span></td>
+                            </tr>
+                            <tr data-disciplina="Gestão de Recursos Naturais">
+                                <td>Gestão de Recursos Naturais</td>
+                                <td>Recurso (20/06)</td>
+                                <td>8</td>
+                                <td>12</td>
+                                <td>9</td>
+                                <td><span class="grade-badge needs-recurso">Necessita Recurso</span></td>
+                                <td><span class="text-danger">Comparecer ao recurso</span></td>
+                            </tr>
+                            <tr data-disciplina="Técnicas de Irrigação">
+                                <td>Técnicas de Irrigação</td>
+                                <td>P2 (25/06)</td>
+                                <td>13</td>
+                                <td>Pendente</td>
+                                <td>-</td>
+                                <td><span class="grade-badge pending">Em Andamento</span></td>
+                                <td><span class="text-warning">Aguardando nota de P2</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção de Progresso -->
+        <div class="card animate-fade-in">
+            <div class="card-header bg-white py-3">
+                <h5 class="mb-0">
+                    <i class="fas fa-tasks me-2"></i>
+                    Progresso do Curso
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="module-card">
+                    <div class="module-title">Módulo 1: Introdução à Agricultura Sustentável</div>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+                    </div>
+                    <div class="module-resources">
+                        <a href="#" class="resource-link">
+                            <i class="fas fa-video"></i>
+                            Videoaula
+                        </a>
+                        <a href="#" class="resource-link">
+                            <i class="fas fa-file-pdf"></i>
+                            Material de Apoio
+                        </a>
+                        <button class="complete-module-btn" disabled>
+                            <i class="fas fa-check me-1"></i>
+                            Concluído
+                        </button>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-title">Módulo 2: Práticas de Conservação do Solo</div>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+                    </div>
+                    <div class="module-resources">
+                        <a href="#" class="resource-link">
+                            <i class="fas fa-video"></i>
+                            Videoaula
+                        </a>
+                        <a href="#" class="resource-link">
+                            <i class="fas fa-file-powerpoint"></i>
+                            Apresentação
+                        </a>
+                        <button class="complete-module-btn">
+                            <i class="fas fa-check me-1"></i>
+                            Marcar como Concluído
+                        </button>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-title">Módulo 3: Gestão de Recursos Hídricos</div>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">30%</div>
+                    </div>
+                    <div class="module-resources">
+                        <a href="#" class="resource-link">
+                            <i class="fas fa-video"></i>
+                            Videoaula
+                        </a>
+                        <a href="#" class="resource-link">
+                            <i class="fas fa-file-excel"></i>
+                            Planilha de Cálculos
+                        </a>
+                        <button class="complete-module-btn">
+                            <i class="fas fa-check me-1"></i>
+                            Marcar como Concluído
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calendário Académico -->
+        <div class="card animate-fade-in mt-4">
+          <div class="card-header bg-white py-3">
+            <h5 class="mb-0">
+              <i class="fas fa-calendar-alt me-2"></i>
+              Calendário de Aulas e Avaliações
+            </h5>
+          </div>
+          <div class="card-body">
+            <div class="row g-3">
+              <!-- Evento 1 -->
+              <div class="col-md-4">
+                <div class="p-3 bg-white rounded shadow-sm h-100">
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="fas fa-pen-alt text-warning me-2 fs-4"></i>
+                    <div>
+                      <div class="fw-bold">P1 - Fundamentos de Agricultura</div>
+                      <small class="text-muted">15 de Junho de 2025</small>
+                    </div>
+                  </div>
+                  <p class="mb-0 text-muted">Avaliação escrita presencial.</p>
+                </div>
+              </div>
+              <!-- Evento 2 -->
+              <div class="col-md-4">
+                <div class="p-3 bg-white rounded shadow-sm h-100">
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="fas fa-video text-info me-2 fs-4"></i>
+                    <div>
+                      <div class="fw-bold">Aula Ao Vivo - Recursos Naturais</div>
+                      <small class="text-muted">17 de Junho de 2025 às 10h</small>
+                    </div>
+                  </div>
+                  <p class="mb-0 text-muted">Via Zoom. Link será enviado por e-mail.</p>
+                </div>
+              </div>
+              <!-- Evento 3 -->
+              <div class="col-md-4">
+                <div class="p-3 bg-white rounded shadow-sm h-100">
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="fas fa-clock text-danger me-2 fs-4"></i>
+                    <div>
+                      <div class="fw-bold">Entrega de Atividade - Módulo 2</div>
+                      <small class="text-muted">20 de Junho de 2025</small>
+                    </div>
+                  </div>
+                  <p class="mb-0 text-muted">Submissão obrigatória via plataforma.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Painel de Recomendações -->
+        <div class="card animate-fade-in mt-4">
+          <div class="card-header bg-white py-3">
+            <h5 class="mb-0">
+              <i class="fas fa-lightbulb me-2"></i>
+              Recomendações de Estudo
+            </h5>
+          </div>
+          <div class="card-body">
+            <div class="row g-3">
+              <!-- Recomendação 1 -->
+              <div class="col-md-4">
+                <div class="p-3 bg-white rounded shadow-sm h-100">
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="fas fa-exclamation-circle text-danger me-2 fs-4"></i>
+                    <div>
+                      <div class="fw-bold">Rever P1 de Recursos Naturais</div>
+                      <small class="text-muted">Nota: 8/20</small>
+                    </div>
+                  </div>
+                  <p class="mb-0 text-muted">Reveja o módulo 1 e 2 antes da próxima avaliação. <a href="#">Ver conteúdo</a></p>
+                </div>
+              </div>
+
+              <!-- Recomendação 2 -->
+              <div class="col-md-4">
+                <div class="p-3 bg-white rounded shadow-sm h-100">
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="fas fa-book text-info me-2 fs-4"></i>
+                    <div>
+                      <div class="fw-bold">Completar Módulo 3</div>
+                      <small class="text-muted">Progresso: 30%</small>
+                    </div>
+                  </div>
+                  <p class="mb-0 text-muted">Finalize o módulo para desbloquear o próximo. <a href="#">Ir para o módulo</a></p>
+                </div>
+              </div>
+
+              <!-- Recomendação 3 -->
+              <div class="col-md-4">
+                <div class="p-3 bg-white rounded shadow-sm h-100">
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="fas fa-download text-success me-2 fs-4"></i>
+                    <div>
+                      <div class="fw-bold">Baixar materiais não acessados</div>
+                      <small class="text-muted">2 PDFs e 1 vídeo</small>
+                    </div>
+                  </div>
+                  <p class="mb-0 text-muted">Disponíveis para uso offline. <a href="#">Ver materiais</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comunicação com o Tutor -->
+        <div class="card animate-fade-in mt-4">
+          <div class="card-header bg-white py-3">
+            <h5 class="mb-0">
+              <i class="fas fa-comments me-2"></i>
+              Fale com o Seu Tutor
+            </h5>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <!-- Info do Tutor -->
+              <div class="col-md-4 mb-3">
+                <div class="bg-white p-3 rounded shadow-sm h-100">
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="fas fa-user-graduate text-primary fs-3 me-2"></i>
+                    <div>
+                      <div class="fw-bold">Dr. João Domingos</div>
+                      <small class="text-muted">Tutor Responsável</small>
+                    </div>
+                  </div>
+                  <p class="mb-1 text-muted"><i class="fas fa-envelope me-2"></i> tutor.joao@itdra.com</p>
+                  <p class="text-muted"><i class="fab fa-whatsapp me-2"></i> +244 923 456 789</p>
+                  <a href="https://wa.me/244923456789" target="_blank" class="btn btn-success btn-sm">
+                    <i class="fab fa-whatsapp me-1"></i> Enviar WhatsApp
+                  </a>
+                </div>
+              </div>
+
+              <!-- Formulário de Mensagem -->
+              <div class="col-md-8 mb-3">
+                <div class="bg-white p-3 rounded shadow-sm h-100">
+                  <form id="formContatoTutor">
+                    <div class="mb-3">
+                      <label for="assunto" class="form-label fw-bold">Assunto</label>
+                      <input type="text" class="form-control" id="assunto" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="mensagem" class="form-label fw-bold">Mensagem</label>
+                      <textarea class="form-control" id="mensagem" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                      <i class="fas fa-paper-plane me-1"></i> Enviar Mensagem
+                    </button>
+                    <span id="mensagemStatus" class="ms-3 text-success fw-bold" style="display:none;">Mensagem enviada!</span>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Histórico Académico -->
+        <div class="card animate-fade-in mt-4">
+          <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">
+              <i class="fas fa-file-alt me-2"></i>
+              Histórico Académico
+            </h5>
+            <div class="d-flex align-items-center gap-3">
+              <select class="form-select form-select-sm" style="width: auto;">
+                <option selected>2024/2025 - 1º Ano</option>
+                <option>2025/2026 - 2º Ano</option>
+                <option>2026/2027 - 3º Ano</option>
+              </select>
+              <button class="btn btn-outline-primary btn-sm">
+                <i class="fas fa-download me-1"></i> Baixar Boletim
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="table-light">
+                  <tr>
+                    <th>Disciplina</th>
+                    <th>P1</th>
+                    <th>P2</th>
+                    <th>Exame</th>
+                    <th>Recurso</th>
+                    <th>Média Final</th>
+                    <th>Status Final</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Fundamentos de Agricultura</td>
+                    <td>15</td>
+                    <td>14</td>
+                    <td>16</td>
+                    <td>-</td>
+                    <td><strong>15</strong></td>
+                    <td><span class="badge bg-success">Aprovado</span></td>
+                  </tr>
+                  <tr>
+                    <td>Gestão de Recursos Naturais</td>
+                    <td>8</td>
+                    <td>12</td>
+                    <td>9</td>
+                    <td>14</td>
+                    <td><strong>10.7</strong></td>
+                    <td><span class="badge bg-warning text-dark">Recurso</span></td>
+                  </tr>
+                  <tr>
+                    <td>Técnicas de Irrigação</td>
+                    <td>13</td>
+                    <td>13</td>
+                    <td>11</td>
+                    <td>-</td>
+                    <td><strong>12.3</strong></td>
+                    <td><span class="badge bg-success">Aprovado</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Central de Downloads -->
+        <div class="card animate-fade-in mt-4">
+          <div class="card-header bg-white py-3">
+            <h5 class="mb-0">
+              <i class="fas fa-download me-2"></i>
+              Central de Downloads
+            </h5>
+          </div>
+          <div class="card-body">
+            <p class="text-muted mb-3">Estes são os materiais disponíveis para você baixar e acessar offline.</p>
+            <ul class="list-group">
+              <!-- Arquivo PDF -->
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                  <i class="fas fa-file-pdf text-danger me-2"></i>
+                  Guia de Estudo - Agricultura Sustentável
+                </div>
+                <a href="assets/pdf/guia-agricultura.pdf" download class="btn btn-sm btn-outline-success">
+                  <i class="fas fa-arrow-down me-1"></i>Baixar
+                </a>
+              </li>
+
+              <!-- Arquivo PowerPoint -->
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                  <i class="fas fa-file-powerpoint text-warning me-2"></i>
+                  Apresentação - Conservação do Solo
+                </div>
+                <a href="assets/pdf/solo-apresentacao.pptx" download class="btn btn-sm btn-outline-success">
+                  <i class="fas fa-arrow-down me-1"></i>Baixar
+                </a>
+              </li>
+
+              <!-- Arquivo Vídeo -->
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                  <i class="fas fa-file-video text-primary me-2"></i>
+                  Vídeo Aula - Módulo 2
+                </div>
+                <a href="assets/vídeos/modulo2.mp4" download class="btn btn-sm btn-outline-success">
+                  <i class="fas fa-arrow-down me-1"></i>Baixar
+                </a>
+              </li>
+
+              <!-- Arquivo Excel -->
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                  <i class="fas fa-file-excel text-success me-2"></i>
+                  Planilha de Cálculo de Água
+                </div>
+                <a href="assets/pdf/agua-calculo.xlsx" download class="btn btn-sm btn-outline-success">
+                  <i class="fas fa-arrow-down me-1"></i>Baixar
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Relatórios de Desempenho -->
+        <div class="card animate-fade-in mt-4">
+          <div class="card-header bg-white py-3">
+            <h5 class="mb-0">
+              <i class="fas fa-chart-pie me-2"></i>
+              Relatórios de Desempenho
+            </h5>
+          </div>
+          <div class="card-body">
+            <div class="row g-4">
+              <!-- Gráfico 1: Médias por Disciplina -->
+              <div class="col-md-6">
+                <h6 class="text-center mb-2">Média por Disciplina</h6>
+                <canvas id="graficoMediaDisciplina" height="200"></canvas>
+              </div>
+
+              <!-- Gráfico 2: Evolução de Notas -->
+              <div class="col-md-6">
+                <h6 class="text-center mb-2">Evolução de Notas</h6>
+                <canvas id="graficoEvolucaoNotas" height="200"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nova seção de Vídeo-aulas -->
+        <div class="video-aulas-section">
+            <h3 class="mb-4">Vídeo-aulas Disponíveis</h3>
+            
+            <!-- Filtros -->
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <select class="form-select" id="disciplinaFilter">
+                        <option value="">Todas as Disciplinas</option>
+                        <option value="matematica">Matemática</option>
+                        <option value="portugues">Português</option>
+                        <option value="biologia">Biologia</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <select class="form-select" id="moduloFilter">
+                        <option value="">Todos os Módulos</option>
+                        <option value="modulo1">Módulo 1</option>
+                        <option value="modulo2">Módulo 2</option>
+                        <option value="modulo3">Módulo 3</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Grid de vídeos -->
+            <div class="row">
+                <!-- Exemplo de card de vídeo -->
+                <div class="col-md-4">
+                    <div class="video-card">
+                        <img src="../images/placeholder-video.jpg" alt="Thumbnail da vídeo-aula" class="video-thumbnail">
+                        <h5 class="video-title">Introdução à Matemática Básica</h5>
+                        <p class="video-description">Aprenda os conceitos fundamentais de matemática necessários para o curso.</p>
+                        <div class="video-meta">
+                            <span><i class="fas fa-clock"></i> 45 minutos</span>
+                            <span><i class="fas fa-eye"></i> Visualizado: 80%</span>
+                        </div>
+                        <div class="progress video-progress">
+                            <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mais cards de vídeo -->
+                <div class="col-md-4">
+                    <div class="video-card">
+                        <img src="../images/placeholder-video.jpg" alt="Thumbnail da vídeo-aula" class="video-thumbnail">
+                        <h5 class="video-title">Gramática Portuguesa - Parte 1</h5>
+                        <p class="video-description">Revisão completa das regras gramaticais básicas.</p>
+                        <div class="video-meta">
+                            <span><i class="fas fa-clock"></i> 30 minutos</span>
+                            <span><i class="fas fa-eye"></i> Visualizado: 50%</span>
+                        </div>
+                        <div class="progress video-progress">
+                            <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="video-card">
+                        <img src="../images/placeholder-video.jpg" alt="Thumbnail da vídeo-aula" class="video-thumbnail">
+                        <h5 class="video-title">Biologia Celular</h5>
+                        <p class="video-description">Estrutura e funcionamento das células.</p>
+                        <div class="video-meta">
+                            <span><i class="fas fa-clock"></i> 60 minutos</span>
+                            <span><i class="fas fa-eye"></i> Não visualizado</span>
+                        </div>
+                        <div class="progress video-progress">
+                            <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paginação -->
+            <nav aria-label="Navegação de vídeo-aulas" class="mt-4">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Anterior</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Próximo</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Simulação de navegação se as páginas não existirem
+        document.querySelectorAll('.nav-link').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                const href = link.getAttribute('href');
+                if (href === '#' || href.endsWith('.html') === false) {
+                    e.preventDefault();
+                    alert('Funcionalidade em desenvolvimento: ' + link.textContent.trim());
+                }
+            });
+        });
+
+        // Funcionalidade real do formulário de contato com o tutor
+        document.addEventListener('DOMContentLoaded', function() {
+            var form = document.getElementById('formContatoTutor');
+            if (form) {
+                var statusMsg = document.getElementById('mensagemStatus');
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    var assunto = document.getElementById('assunto');
+                    var mensagem = document.getElementById('mensagem');
+                    // Validação simples
+                    if (!assunto.value.trim() || !mensagem.value.trim()) {
+                        assunto.classList.add('is-invalid');
+                        mensagem.classList.add('is-invalid');
+                        return;
+                    } else {
+                        assunto.classList.remove('is-invalid');
+                        mensagem.classList.remove('is-invalid');
+                    }
+                    // Simula envio (poderia ser AJAX)
+                    form.querySelector('button[type="submit"]').disabled = true;
+                    statusMsg.style.display = 'inline';
+                    statusMsg.textContent = 'Mensagem enviada!';
+                    setTimeout(function() {
+                        statusMsg.style.display = 'none';
+                        form.querySelector('button[type="submit"]').disabled = false;
+                        assunto.value = '';
+                        mensagem.value = '';
+                    }, 2500);
+                });
+                // Remove erro ao digitar
+                ['input', 'blur'].forEach(function(evt) {
+                    assunto.addEventListener(evt, function() {
+                        if (assunto.value.trim()) assunto.classList.remove('is-invalid');
+                    });
+                    mensagem.addEventListener(evt, function() {
+                        if (mensagem.value.trim()) mensagem.classList.remove('is-invalid');
+                    });
+                });
+            }
+        });
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var btnDownload = document.querySelector('.btn-outline-primary');
+        if (btnDownload) {
+          btnDownload.addEventListener('click', function (e) {
+            e.preventDefault();
+            alert("O boletim será gerado e disponibilizado em breve!");
+          });
+        }
+
+        // Intercepta botões de download da Central de Downloads
+        document.querySelectorAll('.card .btn-outline-success').forEach(function(btn) {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Funcionalidade em desenvolvimento.\nEm breve você poderá baixar seu arquivo normalmente!');
+          });
+        });
+      });
+    </script>
+    <script>
+    // Filtro por disciplina em Notas e Avaliações
+    document.addEventListener('DOMContentLoaded', function() {
+        var filtro = document.getElementById('filtroDisciplina');
+        var linhas = document.querySelectorAll('#tabelaNotas tbody tr');
+        if (filtro) {
+            filtro.addEventListener('change', function() {
+                var val = filtro.value;
+                linhas.forEach(function(tr) {
+                    if (!val || tr.getAttribute('data-disciplina') === val) {
+                        tr.style.display = '';
+                    } else {
+                        tr.style.display = 'none';
+                    }
+                });
+            });
+        }
+    });
+    </script>
+    <script>
+      // Gráfico 1: Média por disciplina
+      const ctx1 = document.getElementById('graficoMediaDisciplina').getContext('2d');
+      new Chart(ctx1, {
+        type: 'bar',
+        data: {
+          labels: ['Agricultura', 'Recursos Naturais', 'Irrigação'],
+          datasets: [{
+            label: 'Média Final',
+            data: [15, 10.7, 12.3],
+            backgroundColor: ['#2E7D32', '#F1C40F', '#1565C0']
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 20
+            }
+          }
+        }
+      });
+
+      // Gráfico 2: Evolução de Notas
+      const ctx2 = document.getElementById('graficoEvolucaoNotas').getContext('2d');
+      new Chart(ctx2, {
+        type: 'line',
+        data: {
+          labels: ['P1', 'P2', 'Exame', 'Recurso'],
+          datasets: [
+            {
+              label: 'Fund. Agricultura',
+              data: [15, 14, 16, null],
+              borderColor: '#2E7D32',
+              fill: false
+            },
+            {
+              label: 'Recursos Naturais',
+              data: [8, 12, 9, 14],
+              borderColor: '#F1C40F',
+              fill: false
+            },
+            {
+              label: 'Irrigação',
+              data: [13, 13, 11, null],
+              borderColor: '#1565C0',
+              fill: false
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          tension: 0.3,
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 20
+            }
+          }
+        }
+      });
+    </script>
+</body>
+</html> 

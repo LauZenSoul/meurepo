@@ -1,0 +1,216 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "João Silva",
+      "email": "joao@example.com",
+      "matricula": "itdrural1",
+      "password": "123456",
+      "role": "student",
+      "turma": "Turma A",
+      "enrollments": [
+        {
+          "courseId": 1,
+          "progress": 75,
+          "lastAccess": "2024-03-01",
+          "status": "active"
+        },
+        {
+          "courseId": 2,
+          "progress": 30,
+          "lastAccess": "2024-03-02",
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Maria Santos",
+      "email": "maria@example.com",
+      "matricula": "itdrural2",
+      "password": "123456",
+      "role": "student",
+      "turma": "Turma A",
+      "enrollments": [
+        {
+          "courseId": 1,
+          "progress": 100,
+          "lastAccess": "2024-02-28",
+          "status": "completed"
+        },
+        {
+          "courseId": 3,
+          "progress": 45,
+          "lastAccess": "2024-03-01",
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Pedro Oliveira",
+      "email": "pedro@example.com",
+      "matricula": "itdrural3",
+      "password": "123456",
+      "role": "student",
+      "turma": "Turma B",
+      "enrollments": [
+        {
+          "courseId": 2,
+          "progress": 60,
+          "lastAccess": "2024-03-02",
+          "status": "active"
+        },
+        {
+          "courseId": 3,
+          "progress": 25,
+          "lastAccess": "2024-03-01",
+          "status": "active"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Ana Costa",
+      "email": "ana@example.com",
+      "matricula": "itdrural4",
+      "password": "123456",
+      "role": "professor",
+      "disciplinas": ["Agricultura Sustentável", "Irrigação Inteligente"],
+      "turmas": ["Turma A", "Turma B"]
+    },
+    {
+      "id": 5,
+      "name": "Carlos Ferreira",
+      "email": "carlos@example.com",
+      "matricula": "itdrural5",
+      "password": "123456",
+      "role": "coordinator",
+      "departamento": "Ciências Agrárias"
+    }
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Agricultura Sustentável",
+      "description": "Aprenda técnicas modernas de agricultura sustentável",
+      "thumbnail": "agricultura.jpg",
+      "duration": 40,
+      "professor": "Ana Costa",
+      "modules": [
+        {
+          "id": 1,
+          "title": "Introdução à Agricultura Sustentável",
+          "description": "Conceitos básicos e importância",
+          "content": "Conteúdo do módulo 1",
+          "order": 1
+        },
+        {
+          "id": 2,
+          "title": "Técnicas de Cultivo",
+          "description": "Métodos e práticas sustentáveis",
+          "content": "Conteúdo do módulo 2",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Pecuária Digital",
+      "description": "Gestão digital de rebanhos e produção animal",
+      "thumbnail": "pecuaria.jpg",
+      "duration": 35,
+      "professor": "Carlos Mendes",
+      "modules": [
+        {
+          "id": 1,
+          "title": "Gestão de Rebanho",
+          "description": "Ferramentas digitais para gestão",
+          "content": "Conteúdo do módulo 1",
+          "order": 1
+        },
+        {
+          "id": 2,
+          "title": "Monitoramento Digital",
+          "description": "Sistemas de monitoramento",
+          "content": "Conteúdo do módulo 2",
+          "order": 2
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Irrigação Inteligente",
+      "description": "Sistemas modernos de irrigação e economia de água",
+      "thumbnail": "irrigacao.jpg",
+      "duration": 30,
+      "professor": "Ana Costa",
+      "modules": [
+        {
+          "id": 1,
+          "title": "Sistemas de Irrigação",
+          "description": "Tipos e aplicações",
+          "content": "Conteúdo do módulo 1",
+          "order": 1
+        },
+        {
+          "id": 2,
+          "title": "Automação da Irrigação",
+          "description": "Tecnologias e controle",
+          "content": "Conteúdo do módulo 2",
+          "order": 2
+        }
+      ]
+    }
+  ],
+  "grades": [
+    {
+      "id": 1,
+      "studentId": 1,
+      "courseId": 1,
+      "nota": 8.5,
+      "data": "2024-02-15",
+      "professor": "Ana Costa"
+    },
+    {
+      "id": 2,
+      "studentId": 2,
+      "courseId": 1,
+      "nota": 9.2,
+      "data": "2024-02-15",
+      "professor": "Ana Costa"
+    },
+    {
+      "id": 3,
+      "studentId": 1,
+      "courseId": 2,
+      "nota": 7.8,
+      "data": "2024-02-20",
+      "professor": "Carlos Mendes"
+    },
+    {
+      "id": 4,
+      "studentId": 3,
+      "courseId": 2,
+      "nota": 8.0,
+      "data": "2024-02-20",
+      "professor": "Carlos Mendes"
+    }
+  ],
+  "turmas": [
+    {
+      "id": 1,
+      "nome": "Turma A",
+      "ano": 2024,
+      "semestre": 1,
+      "alunos": [1, 2]
+    },
+    {
+      "id": 2,
+      "nome": "Turma B", 
+      "ano": 2024,
+      "semestre": 1,
+      "alunos": [3]
+    }
+  ]
+} 

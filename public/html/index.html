@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITDRA - Instituto Técnico Digital Rural de Angola</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/courses.css">
+    <script src="../js/main.js" defer></script>
+    <script src="../js/login.js" defer></script>
+</head>
+<body>
+    <!-- Modal de Login -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header text-center">
+                <img src="../images/logo_temp.png" alt="ITDRA Logo" class="modal-logo">
+                <h2>Bem-vindo ao ITDRA</h2>
+                <p class="modal-subtitle">Entre com suas credenciais para acessar o sistema</p>
+            </div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email ou Número de Matrícula</label>
+                    <div class="input-group">
+                        <span class="input-icon"><i class="fas fa-user"></i></span>
+                        <input type="text" id="email" name="email" required 
+                            placeholder="Digite seu email ou matrícula">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="senha">Senha</label>
+                    <div class="input-group">
+                        <span class="input-icon"><i class="fas fa-lock"></i></span>
+                        <input type="password" id="senha" name="senha" required 
+                            placeholder="Digite sua senha">
+                        <span class="toggle-password"><i class="fas fa-eye"></i></span>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <div class="remember-me">
+                        <input type="checkbox" id="lembrar" name="lembrar">
+                        <label for="lembrar">Lembrar-me</label>
+                    </div>
+                    <a href="#" class="forgot-password">Esqueceu a senha?</a>
+                </div>
+
+                <button type="submit" class="btn-login-submit">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Entrar
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../images/logo_temp.png" alt="IMRDA Logo" id="logo-placeholder">
+                <h1>Instituto Técnico Digital Rural de Angola</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Início</a></li>
+                    <li><a href="/public/html/cursos.html">Cursos</a></li>
+                    <li><a href="/public/html/sobre.html">Sobre</a></li>
+                    <li><a href="">Contacto</a></li>
+                    <li><a href="#" class="btn-login">Entrar</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>Educação Técnica de Qualidade para o Desenvolvimento Rural</h2>
+                    <p>O Instituto Médio Rural Digital de Angola oferece formação técnica especializada através de um modelo híbrido inovador, adaptado às necessidades das comunidades rurais.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary" id="btn-cadastro">Inscreva-se</a>
+                        <a href="#" class="btn btn-secondary">Conheça os Cursos</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="../images/logo_temp.png" alt="Estudantes do IMRDA" id="hero-placeholder">
+                </div>
+            </div>
+        </section>
+
+        <section class="courses">
+            <div class="container">
+                <h2>Nossos Cursos Técnicos</h2>
+                <div class="courses-grid">
+                    <div class="course-card">
+                        <div class="course-image">
+                            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3" alt="Enfermagem Rural">
+                        </div>
+                        <div class="course-content">
+                            <h3>Técnico em Enfermagem Rural</h3>
+                            <p>Forme-se como técnico em enfermagem com foco em atendimento às comunidades rurais.</p>
+                            <div class="course-buttons">
+                                <a href="#" class="course-btn course-btn-primary">Inscrever-se</a>
+                                <a href="#" class="course-btn course-btn-outline">Mais Detalhes</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="course-image">
+                            <img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?ixlib=rb-4.0.3" alt="Agronomia Rural">
+                        </div>
+                        <div class="course-content">
+                            <h3>Técnico em Agronomia Rural</h3>
+                            <p>Aprenda técnicas modernas de agricultura sustentável e gestão rural.</p>
+                            <div class="course-buttons">
+                                <a href="#" class="course-btn course-btn-primary">Inscrever-se</a>
+                                <a href="#" class="course-btn course-btn-outline">Mais Detalhes</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="course-image">
+                            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3" alt="Administração Rural">
+                        </div>
+                        <div class="course-content">
+                            <h3>Técnico em Administração Rural</h3>
+                            <p>Desenvolva habilidades em gestão e empreendedorismo rural.</p>
+                            <div class="course-buttons">
+                                <a href="#" class="course-btn course-btn-primary">Inscrever-se</a>
+                                <a href="#" class="course-btn course-btn-outline">Mais Detalhes</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="course-image">
+                            <img src="https://images.unsplash.com/photo-1604177052603-c2b4cff228db?ixlib=rb-4.0.3" alt="Veterinária Rural">
+                        </div>
+                        <div class="course-content">
+                            <h3>Técnico em Veterinária Rural</h3>
+                            <p>Especialização em cuidados com animais de produção e pets rurais.</p>
+                            <div class="course-buttons">
+                                <a href="#" class="course-btn course-btn-primary">Inscrever-se</a>
+                                <a href="#" class="course-btn course-btn-outline">Mais Detalhes</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nova seção de Cursos Futuros -->
+        <section class="future-courses">
+            <div class="container">
+                <h2>Cursos Futuros</h2>
+                <p class="section-intro">Registe o seu interesse nos próximos cursos que serão lançados em 6 meses. A sua opinião ajuda-nos a priorizar as próximas ofertas formativas.</p>
+                
+                <div class="courses-grid">
+                    <div class="course-card future">
+                        <div class="course-image">
+                            <img src="https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?ixlib=rb-4.0.3" alt="Processamento de Alimentos">
+                        </div>
+                        <div class="course-content">
+                            <h3>Técnico em Processamento de Alimentos</h3>
+                            <p>Aprenda técnicas de processamento e conservação de alimentos rurais.</p>
+                            <div class="course-buttons">
+                                <a href="#" class="course-btn course-btn-outline">Registrar Interesse</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-card future">
+                        <div class="course-image">
+                            <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3" alt="Energias Renováveis">
+                        </div>
+                        <div class="course-content">
+                            <h3>Técnico em Energias Renováveis</h3>
+                            <p>Estude implementação de energia solar e outras fontes renováveis no campo.</p>
+                            <div class="course-buttons">
+                                <a href="#" class="course-btn course-btn-outline">Registrar Interesse</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-card future">
+                        <div class="course-image">
+                            <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3" alt="Tecnologia da Informação">
+                        </div>
+                        <div class="course-content">
+                            <h4>Tecnologia da Informação e Comunicação Rural</h4>
+                            <p>Aplicação de tecnologias digitais para desenvolvimento e gestão de negócios rurais.</p>
+                            <div class="course-buttons">
+                                <a href="#" class="course-btn course-btn-outline">Registrar Interesse</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-card future">
+                        <div class="course-image">
+                            <img src="https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?ixlib=rb-4.0.3" alt="Gestão de Recursos Hídricos">
+                        </div>
+                        <div class="course-content">
+                            <h3>Gestão de Recursos Hídricos</h3>
+                            <p>Técnicas de captação, armazenamento e uso eficiente da água em contextos rurais.</p>
+                            <div class="course-buttons">
+                                <a href="#" class="course-btn course-btn-outline">Registrar Interesse</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="suggest-course">
+                    <h3>Sugira um curso</h3>
+                    <p>Tem uma ideia para um curso que gostaria de ver no IMRDA? Partilhe connosco a sua sugestão e ajude-nos a expandir nossa oferta formativa!</p>
+                    <form class="suggest-form">
+                        <div class="form-group">
+                            <label for="course-name">Nome do Curso</label>
+                            <input type="text" id="course-name" name="course-name" placeholder="Ex: Técnico em Irrigação Rural" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="course-description">Descrição do Curso</label>
+                            <textarea id="course-description" name="course-description" placeholder="Descreva brevemente o curso e sua importância para o desenvolvimento rural..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="course-area">Área de Atuação</label>
+                            <input type="text" id="course-area" name="course-area" placeholder="Ex: Agricultura, Pecuária, Saúde, etc." required>
+                        </div>
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            Enviar sugestão
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2>Por que escolher o ITDRA?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-laptop-house fa-3x"></i>
+                        </div>
+                        <h3>Ensino Híbrido</h3>
+                        <p>Combinação de formação digital e prática presencial, adaptada à realidade rural.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-certificate fa-3x"></i>
+                        </div>
+                        <h3>Certificação Oficial</h3>
+                        <p>Cursos reconhecidos pelos Ministérios da Educação, Agricultura e Saúde.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-wifi fa-3x"></i>
+                        </div>
+                        <h3>Acesso Digital</h3>
+                        <p>Utilização dos centros Telbanda para acesso à plataforma educacional.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chalkboard-teacher fa-3x"></i>
+                        </div>
+                        <h3>Tutoria Especializada</h3>
+                        <p>Acompanhamento personalizado por tutores com experiência no contexto rural.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../images/logo_temp.png" alt="IMRDA Logo" id="footer-logo-placeholder">
+                    <p>Instituto Médio Rural Digital de Angola</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#">Início</a></li>
+                        <li><a href="#">Cursos</a></li>
+                        <li><a href="#">Sobre Nós</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contacto</h4>
+                    <p>Email: info@imrda.ao</p>
+                    <p>Telefone: +244 XXX XXX XXX</p>
+                </div>
+                <div class="footer-partners">
+                    <h4>Parceiros</h4>
+                    <div class="partner-logos">
+                        <img src="../images/logo_temp.png" alt="Telbanda" id="partner1-placeholder">
+                        <img src="../images/logo_temp.png" alt="Ministério da Educação" id="partner2-placeholder">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Instituto Médio Rural Digital de Angola. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Inclui JavaScript -->
+    <script src="../js/main.js"></script>
+</body>
+</html>
