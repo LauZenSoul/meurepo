@@ -126,11 +126,11 @@ function initializeLoginButton() {
             // Verificar se existe uma página de login específica
             showLoadingButton(this);
             
-            fetch('/login.html')
+            fetch('./login.html')
                 .then(response => {
                     if (response.ok) {
                         setTimeout(() => {
-                            window.location.href = '/login.html';
+                            window.location.href = 'login.html';
                         }, 800);
                     } else {
                         hideLoadingButton(this);
@@ -537,8 +537,8 @@ function initializePerformanceOptimizations() {
     
     // Preload de recursos críticos
     const criticalResources = [
-        '/login.html',
-        '/dashboard-admin.html'
+        'login.html',
+        'public/html/dashboard-admin.html'
     ];
     
     criticalResources.forEach(resource => {

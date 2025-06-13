@@ -76,9 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     sessionStorage.setItem('userType', userType);
                 }
 
-                // Detectar se estamos na raiz ou na pasta public/html
-                const isRoot = window.location.pathname.endsWith('index.html');
-                const basePath = isRoot ? 'public/html/' : '';
+                // Detectar se estamos na pasta /public/html ou na raiz do repositório (/, /index.html)
+                const isInPublic = window.location.pathname.includes('/public/html');
+                const isHome = /\/$|index\.html$/.test(window.location.pathname);
+                const basePath = isInPublic ? '' : (isHome ? 'public/html/' : './');
                 
                 // Redirecionar baseado no tipo de usuário
                 switch (userType) {
