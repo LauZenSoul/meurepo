@@ -12,6 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
         admin: {
             email: 'admin@itdra.com',
             senha: 'admin123'
+        },
+        coordenador: {
+            email: 'coordenador@itdra.com',
+            senha: 'coord123'
         }
     };
 
@@ -41,8 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
         loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
+        e.preventDefault();
+
             const email = document.getElementById('email').value;
             const senha = document.getElementById('senha').value;
             const lembrar = document.getElementById('lembrar').checked;
@@ -55,6 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 userType = 'professor';
             } else if (email === testCredentials.admin.email && senha === testCredentials.admin.senha) {
                 userType = 'admin';
+            } else if (email === testCredentials.coordenador.email && senha === testCredentials.coordenador.senha) {
+                userType = 'coordenador';
             }
 
             if (userType) {
@@ -70,16 +76,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     sessionStorage.setItem('userType', userType);
                 }
 
+                // Detectar se estamos na raiz ou na pasta public/html
+                const isRoot = window.location.pathname.endsWith('index.html');
+                const basePath = isRoot ? 'public/html/' : '';
+                
                 // Redirecionar baseado no tipo de usuário
                 switch (userType) {
                     case 'aluno':
-                        window.location.href = 'public/html/dashboard-aluno.html';
+                        window.location.href = basePath + 'dashboard-aluno.html';
                         break;
                     case 'professor':
-                        window.location.href = 'public/html/professor-dashboard.html';
+                        window.location.href = basePath + 'professor-dashboard.html';
                         break;
                     case 'admin':
-                        window.location.href = 'public/html/dashboard-admin.html';
+                        window.location.href = basePath + 'dashboard-admin.html';
+                        break;
+                    case 'coordenador':
+                        window.location.href = basePath + 'coordinator-dashboard.html';
                         break;
                 }
             } else {

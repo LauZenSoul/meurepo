@@ -17,68 +17,64 @@ function initializeMenuToggle() {
     const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('nav');
     const body = document.body;
-    
+    const overlay = document.querySelector('.menu-overlay');
+
     if (menuToggle && nav) {
-        // Animação mais sofisticada para o toggle
-        menuToggle.addEventListener('click', function() {
-            const isActive = menuToggle.classList.contains('active');
-            
-            if (!isActive) {
-                // Animação de abertura
-                menuToggle.classList.add('active');
-                nav.classList.add('active');
-                body.classList.add('menu-open');
-                
-                // Animação escalonada dos itens do menu
-                const navItems = nav.querySelectorAll('li');
-                navItems.forEach((item, index) => {
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateX(-30px)';
-                    item.style.transition = `all 0.4s cubic-bezier(0.25, 1, 0.5, 1) ${index * 0.1}s`;
-                    
-                    setTimeout(() => {
-                        item.style.opacity = '1';
-                        item.style.transform = 'translateX(0)';
-                    }, 100);
-                });
-            } else {
-                // Animação de fechamento
-                const navItems = nav.querySelectorAll('li');
-                navItems.forEach((item, index) => {
-                    item.style.transition = `all 0.3s cubic-bezier(0.5, 0, 0.75, 0) ${index * 0.05}s`;
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateX(-20px)';
-                });
-                
-                setTimeout(() => {
-                    menuToggle.classList.remove('active');
-                    nav.classList.remove('active');
-                    body.classList.remove('menu-open');
-                }, 300);
-            }
+        menuToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            toggleMenu();
         });
-        
-        // Fechar menu ao clicar em um link com animação
+
+        // Fechar menu ao clicar em um link
         const navLinks = nav.querySelectorAll('a');
         navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                // Animação de ripple no link clicado
-                createRippleEffect(this);
-                
-                setTimeout(() => {
-                    menuToggle.classList.remove('active');
-                    nav.classList.remove('active');
-                    body.classList.remove('menu-open');
-                }, 200);
-            });
+            link.addEventListener('click', closeMenu);
         });
-        
-        // Fechar menu ao clicar fora dele
-        document.addEventListener('click', function(e) {
-            if (!nav.contains(e.target) && !menuToggle.contains(e.target)) {
-                menuToggle.classList.remove('active');
-                nav.classList.remove('active');
-                body.classList.remove('menu-open');
+
+        // Fechar menu ao clicar no overlay
+        overlay.addEventListener('click', closeMenu);
+
+        // Fechar menu ao pressionar ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeMenu();
+            }
+        });
+    }
+
+    function toggleMenu() {
+        menuToggle.classList.toggle('active');
+        nav.classList.toggle('active');
+        body.classList.toggle('menu-open');
+    }
+
+    function closeMenu() {
+        menuToggle.classList.remove('active');
+        nav.classList.remove('active');
+        body.classList.remove('menu-open');
+    }
+
+    // Modal de Login
+    const loginBtn = document.querySelector('.btn-login');
+    const loginModal = document.getElementById('loginModal');
+    const closeBtn = document.querySelector('.close');
+
+    if (loginBtn && loginModal) {
+        loginBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginModal.style.display = 'flex';
+            loginModal.classList.add('show');
+        });
+
+        closeBtn.addEventListener('click', function() {
+            loginModal.style.display = 'none';
+            loginModal.classList.remove('show');
+        });
+
+        window.addEventListener('click', function(e) {
+            if (e.target == loginModal) {
+                loginModal.style.display = 'none';
+                loginModal.classList.remove('show');
             }
         });
     }
@@ -168,7 +164,7 @@ function hideLoadingButton(button) {
 
 // Função para abrir modal de login com animação elegante
 function openLoginModal() {
-    const loginModal = document.getElementById('login-modal');
+    const loginModal = document.getElementById('loginModal');
     if (loginModal) {
         loginModal.style.display = 'flex';
         loginModal.classList.add('show');
@@ -290,7 +286,7 @@ function applyParallaxEffect(element, ratio) {
 
 // Função para inicializar modal com animações elegantes
 function initializeModal() {
-    const modal = document.getElementById('login-modal');
+    const modal = document.getElementById('loginModal');
     const closeModal = document.querySelector('.close-modal');
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
@@ -597,7 +593,7 @@ function handleRegistration() {
         showNotification('Cadastro iniciado com sucesso! Você será redirecionado para a próxima etapa.', 'success');
         
         setTimeout(() => {
-            const modal = document.getElementById('login-modal');
+            const modal = document.getElementById('loginModal');
             modal.style.display = 'none';
             document.body.style.overflow = 'auto';
         }, 2000);
@@ -831,40 +827,3 @@ const enhancedStyles = `
 `;
 
 document.head.insertAdjacentHTML('beforeend', enhancedStyles); 
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Controle do menu mobile
-    const menuToggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('nav');
-
-    if (menuToggle) {
-        menuToggle.addEventListener('click', () => {
-            nav.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-        });
-    }
-
-    // Controle do modal de login
-    const modal = document.getElementById('loginModal');
-    const btnLogin = document.querySelector('.btn-login');
-    const span = document.querySelector('.close');
-
-    if (btnLogin) {
-        btnLogin.addEventListener('click', (e) => {
-            e.preventDefault();
-            modal.style.display = 'block';
-        });
-    }
-
-    if (span) {
-        span.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
-    }
-
-    window.addEventListener('click', (event) => {
-        if (event.target == modal) {
-            modal.style.display = 'none';
-        }
-    });
-}); 

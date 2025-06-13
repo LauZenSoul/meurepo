@@ -216,6 +216,24 @@
     .reports-grid {
         grid-template-columns: 1fr;
     }
+
+    .dashboard-header {
+        margin-left: 0;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .header-right {
+        width: auto;
+        justify-content: flex-end;
+        gap: 0.75rem;
+    }
+
+    .search-bar {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
 }
 
 /* Animações */
@@ -607,15 +625,23 @@ body {
     top: 1rem;
     z-index: var(--z-header);
     margin-bottom: 2rem;
+    flex-wrap: wrap;
+    row-gap: 1rem;
 }
+
+/* ==== Ajuste de layout do cabeçalho ==== */
+.search-bar {
+    flex: 1 1 280px;
+    min-width: 220px;
+}
+
+.header-right {
+    flex: 0 0 auto;
+}
+
+/* ==== Fim do ajuste de layout ==== */
 
 /* Barra de pesquisa */
-.search-bar {
-    position: relative;
-    flex: 1;
-    max-width: 400px;
-}
-
 .search-bar input {
     width: 100%;
     padding: 0.875rem 1rem 0.875rem 3rem;
@@ -938,18 +964,21 @@ table tbody tr:hover {
     }
     
     .dashboard-header {
-        padding: 1rem;
-        margin-left: 3rem;
-        flex-direction: column;
-        align-items: stretch;
-    }
-    
-    .search-bar {
-        max-width: none;
+        margin-left: 0;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
     }
     
     .header-right {
-        justify-content: space-between;
+        width: auto;
+        justify-content: flex-end;
+        gap: 0.75rem;
+    }
+    
+    .search-bar {
+        flex: 1 1 auto;
+        min-width: 0;
     }
     
     .overview-cards {
@@ -1005,16 +1034,6 @@ table tbody tr:hover {
 
     .card-info h3 {
         font-size: 1.25rem;
-    }
-}
-
-/* Suporte para modo escuro do sistema */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --light: #1a1a1a;
-        --dark: #ffffff;
-        --white: #2d2d2d;
-        --shadow: rgba(0, 0, 0, 0.2);
     }
 }
 
@@ -2252,4 +2271,77 @@ table tbody tr:hover {
 .status.graduated {
     background-color: #dbeafe;
     color: #1d4ed8;
-} 
+}
+
+/* ===== Estilos para itens de cabeçalho dentro do menu mobile ===== */
+.mobile-header-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem 1rem 1.25rem;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+@media (max-width: 768px) {
+    .mobile-header-items {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 1rem 1rem 1.25rem;
+        border-top: 1px solid rgba(0,0,0,0.05);
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    /* Ajustar barra de pesquisa dentro do menu */
+    .mobile-header-items .search-bar {
+        width: 100%;
+        max-width: none;
+        position: relative;
+        margin-bottom: 0.5rem;
+    }
+
+    .mobile-header-items .search-bar input {
+        background-color: var(--light);
+    }
+
+    /* Alinhar área de notificações + perfil */
+    .mobile-header-items .header-right {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        width: 100%;
+        padding: 0 0.25rem;
+    }
+
+    .mobile-header-items .notifications {
+        padding: 0.5rem;
+        font-size: 1.4rem;
+        background: transparent;
+        border-radius: 0.5rem;
+        color: var(--neutral);
+    }
+
+    .mobile-header-items .notifications:hover {
+        background: var(--light);
+    }
+
+    .mobile-header-items .user-profile {
+        gap: 0.5rem;
+        background: transparent;
+        border-radius: 0.5rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    .mobile-header-items .user-profile span {
+        display: none;
+    }
+
+    /* Opcional: reduzir badge dentro do menu */
+    .mobile-header-items .notification-badge {
+        top: -4px;
+        right: -4px;
+    }
+}
+/* ===== Fim dos estilos mobile ===== */ 
